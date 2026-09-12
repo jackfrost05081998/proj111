@@ -4,6 +4,7 @@ CREATE DATABASE IF NOT EXISTS beanson_pos
 USE beanson_pos;
 CREATE TABLE users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    firebase_uid VARCHAR(128) NULL UNIQUE,
     username VARCHAR(50) NOT NULL UNIQUE,
     full_name VARCHAR(100) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,

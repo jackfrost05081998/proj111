@@ -1,0 +1,15 @@
+# Composer dependencies
+/vendor/
+
+# Firebase service-account credentials
+firebase_credentials.json
+*.firebase-credentials.json
+
+# Local environment files
+.env
+.env.local
+
+# Local/editor files
+.DS_Store
+.idea/
+.vscode/

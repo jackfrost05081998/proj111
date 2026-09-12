@@ -3,6 +3,7 @@
     "description": "Beanson Brew Cafe POS",
     "type": "project",
     "require": {
+        "php": "^8.3",
         "kreait/firebase-php": "^7.2"
     }
 }

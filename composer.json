@@ -1,0 +1,8 @@
+{
+    "name": "jackfrost05081998/beanson-brew-cafe-pos",
+    "description": "Beanson Brew Cafe POS",
+    "type": "project",
+    "require": {
+        "kreait/firebase-php": "^7.2"
+    }
+}

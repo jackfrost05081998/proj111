@@ -94,6 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: products.php');
                 exit;
             }
+
+            /*
+             * Edit an existing active product.
+             */
             if ($action === 'update') {
                 $productId = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
                 $product = validProductInput();
@@ -130,6 +134,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: products.php');
                 exit;
             }
+
+            /*
+             * Soft delete one active product.
+             * It stays in MySQL and can later be restored.
+             */
             if ($action === 'soft_delete') {
                 $productId = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
 
@@ -162,6 +171,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: products.php');
                 exit;
             }
+
+            /*
+             * Restore one or many selected deleted products.
+             */
             if ($action === 'bulk_restore') {
                 $ids = selectedProductIds();
 
@@ -191,6 +204,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: products.php');
                 exit;
             }
+
+            /*
+             * Permanently delete one or many products.
+             *
+             * The database schema has ON DELETE SET NULL for order_items.product_id.
+             * Old receipts keep their product_name, unit_price, quantity, and total.
+             */
             if ($action === 'bulk_permanent_delete') {
                 $ids = selectedProductIds();
 

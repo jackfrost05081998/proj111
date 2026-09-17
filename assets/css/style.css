@@ -38,6 +38,8 @@ img { max-width: 100%; }
     outline: 3px solid var(--brass);
     outline-offset: 3px;
 }
+
+/* Shared application shell */
 .topbar {
     display: flex;
     align-items: center;
@@ -465,4 +467,150 @@ dialog.edit-product-dialog { width: min(650px, calc(100% - 28px)); padding: 0; c
     .receipt hr { border-color: #000; }
     .receipt-line { break-inside: avoid; }
     .no-print { display: none !important; }
+}
+
+/* ============================================================
+   Login page v2 — glass card over cafe background
+   Scoped to body.login-hero; setup page keeps the old style
+   ============================================================ */
+.login-hero {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: 24px;
+    background: #141d22 url("../img/login-bg.jpg") center / cover no-repeat fixed;
+}
+.login-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgb(10 20 26 / .38), rgb(10 20 26 / .58));
+    pointer-events: none;
+}
+.login-hero .auth-card {
+    position: relative;
+    width: min(460px, 100%);
+    padding: 38px 36px 30px;
+    background: rgb(15 17 20 / .25);
+    border: 1px solid rgb(255 255 255 / .30);
+    border-radius: 6px;
+    box-shadow: 0 25px 60px rgb(4 12 16 / .55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #f2f6f7;
+    text-align: center;
+}
+.login-hero .brand-mark {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 16px;
+    color: #f8dca9;
+    background: rgb(20 30 36 / .55);
+    border: 2px solid var(--brass);
+}
+.login-hero .auth-card h1 {
+    color: #ffffff;
+    font-size: 1.9rem;
+    letter-spacing: .01em;
+}
+.login-hero .auth-sub {
+    margin: 6px 0 24px;
+    color: rgb(226 236 238 / .68);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+}
+.login-hero .auth-card form {
+    display: grid;
+    gap: 14px;
+    text-align: left;
+}
+.login-hero .field-row {
+    display: grid;
+    grid-template-columns: 118px 1fr;
+}
+.login-hero .field-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    color: #241812;
+    background: linear-gradient(180deg, #f0c419, #d9a806);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+.login-hero .field-row input {
+    min-height: 48px;
+    padding: 10px 14px;
+    color: var(--espresso);
+    background: #ffffff;
+    border: 0;
+    border-radius: 0;
+}
+.login-hero .field-row input::placeholder { color: #9a8a7d; }
+.login-hero .form-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: rgb(226 236 238 / .78);
+    font-size: .82rem;
+}
+.login-hero .form-meta label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: inherit;
+    font-size: .82rem;
+    font-weight: 550;
+}
+.login-hero .form-meta input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #f0c419;
+}
+.login-hero .form-meta .meta-note {
+    color: rgb(226 236 238 / .5);
+    font-size: .74rem;
+}
+.login-hero .button.primary {
+    min-height: 48px;
+    margin-top: 4px;
+    color: #ffffff;
+    background: #0e4964;
+    border-color: #0e4964;
+    font-size: .92rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+.login-hero .button.primary:hover:not(:disabled) {
+    color: #ffffff;
+    background: #145e80;
+    border-color: #145e80;
+}
+.login-hero .auth-card .alert {
+    background: rgb(163 62 54 / .30);
+    border-color: #dea39d;
+    color: #ffe3de;
+}
+.login-hero .auth-card .alert.success {
+    background: rgb(47 107 79 / .35);
+    border-color: #9fc6ab;
+    color: #ddf0e3;
+}
+.login-hero .auth-footer {
+    margin: 24px 0 0;
+    color: rgb(226 236 238 / .45);
+    font-size: .72rem;
+    letter-spacing: .06em;
+}
+@media (max-width: 480px) {
+    .login-hero .field-row { grid-template-columns: 1fr; }
+    .login-hero .field-tab { min-height: 34px; }
+    .login-hero .form-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
 }

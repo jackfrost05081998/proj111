@@ -51,14 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login | Beanson Brew Cafe POS</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=3">
 </head>
-<body class="auth-page">
+<body class="login-hero">
 <main class="auth-card">
-    <div class="brand-mark">BB</div>
-    <h1>Beanson Brew Cafe</h1>
-    <p class="muted">Point-of-Sale System</p>
-
+    <h1>Login</h1>
     <?php if ($flash): ?>
         <div class="alert <?= e($flash['type']) ?>" role="status"><?= e($flash['message']) ?></div>
     <?php endif; ?>
@@ -68,14 +65,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="post">
         <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
-        <label>Username
-            <input name="username" required autofocus maxlength="50">
-        </label>
-        <label>Password
-            <input type="password" name="password" required>
-        </label>
+
+        <div class="field-row">
+            <label class="field-tab" for="username">Username</label>
+            <input id="username" name="username" required autofocus maxlength="50" placeholder="Enter your username" autocomplete="username">
+        </div>
+        <div class="field-row">
+            <label class="field-tab" for="password">Password</label>
+            <input id="password" type="password" name="password" required placeholder="Enter your password" autocomplete="current-password">
+        </div>
+
+
+
         <button class="button primary full" type="submit">Log In</button>
     </form>
+
+    <p class="auth-footer">&copy; <?= date('Y') ?> Beanson Brew Cafe &middot; POS</p>
 </main>
 </body>
 </html>

@@ -1,5 +1,10 @@
 <?php
 declare(strict_types=1);
+
+/*
+ * XAMPP for Linux normally uses root with an empty password locally.
+ * If you set a MySQL password, replace the empty string below.
+ */
 const DB_HOST = '127.0.0.1';
 const DB_NAME = 'beanson_pos';
 const DB_USER = 'root';

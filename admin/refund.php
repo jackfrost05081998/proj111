@@ -7,6 +7,9 @@ require_login();
 function refundReturnUrl(string $date, string $source = 'admin'): string
 {
     $query = http_build_query(['date' => $date]);
+
+    // A refund can be launched from the admin report or from a cashier's own
+    // sales report. Send the browser back to whichever page it came from.
     if ($source === 'cashier') {
         return '../cashier/report.php?' . $query;
     }
@@ -74,6 +77,12 @@ $pdo = db();
 
 try {
     $pdo->beginTransaction();
+
+    // Resolve the administrator who is authorizing this refund.
+    // - From the cashier's report an admin username is supplied, so a manager
+    //   can approve the refund at the cashier's screen (admin override).
+    // - From the admin report no username is sent and the logged-in admin
+    //   authorizes with their own password.
     if ($adminUsername !== '') {
         $adminStatement = $pdo->prepare(
             "SELECT id, password_hash
@@ -120,6 +129,9 @@ try {
     if (!$order || $order['status'] !== 'completed' || (float) $order['total'] <= 0) {
         throw new RuntimeException('This receipt is not eligible for a refund.');
     }
+
+    // A cashier authorizing from their own report may only refund their own
+    // receipts, even though an administrator approves the action.
     if ((current_user()['role'] ?? '') !== 'admin'
         && (int) $order['cashier_id'] !== (int) current_user()['id']) {
         throw new RuntimeException('You can only refund your own receipts.');
